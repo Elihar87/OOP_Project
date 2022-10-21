@@ -4,22 +4,14 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.InputEvent;
 import javafx.scene.input.MouseButton;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.StackPane;
-import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import javafx.scene.shape.Rectangle;
 import javafx.scene.Parent;
 
-import java.io.FileInputStream;
-import java.io.InputStream;
 
-
-public class TicTacToe extends Application
+public class Dice_Game extends Application
 {
     private int num;
     private final int MAX_TURNS = 18;
