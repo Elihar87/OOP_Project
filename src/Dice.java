@@ -10,7 +10,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 
-
+//HELLO
 public class Dice extends StackPane
 {
 Random random = new Random();
