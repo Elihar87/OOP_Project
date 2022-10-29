@@ -10,7 +10,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 
-//HELLO
+
 public class Dice extends StackPane
 {
 Random random = new Random();
@@ -25,17 +25,18 @@ private ImageView Dice_1 = new ImageView();
 
   public Dice()
   {
-    Rectangle display = new Rectangle(100, 100);
-    display.setFill(null);
-    display.setStroke(Color.BLACK);
-    getChildren().addAll(display, label);
+    getChildren().addAll(label);
   }
 
-public int rollDie()
+public void rollDie()
 {
   int number = random.nextInt(6)+1;
   dice_value = number;
-  return number;
+}
+
+public int return_dice_value()
+{
+  return dice_value;
 }
 
   public void set_diceFace()
@@ -78,5 +79,8 @@ public int rollDie()
     }
   }
 
-
+  public void hide_dice()
+  {
+label.setVisible(false);
+  }
 }

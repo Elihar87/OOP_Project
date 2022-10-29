@@ -14,9 +14,15 @@ import javafx.scene.Parent;
 public class Dice_Game extends Application
 {
     private int num;
+    private int total_1;
+    private int total_2;
     private final int MAX_TURNS = 18;
     private int num_turns = 1;
+    Calculations calculate = new Calculations();
     private Label turn_display = new Label("Left Player's Turn");
+    private Label winner_text = new Label("Player 1 Wins!");
+    private Label total_1_text = new Label ("Player 1 Total: " + total_1);
+    private Label total_2_text = new Label ("Player 2 Total: " + total_2);
     private boolean player1_turn = true;
     private boolean player2_turn = false;
     private int[][] grid_1 = new int [3][3];
@@ -36,7 +42,8 @@ root.setPrefSize(600,600);
         Dice die = new Dice();
         die.setTranslateX(575);
         die.setTranslateY(150);
-        num = die.rollDie();
+        die.rollDie();
+        num = die.return_dice_value();
         die.set_diceFace();
         root.getChildren().add(die);
 
@@ -65,6 +72,28 @@ root.getChildren().add(left_arrow);
         right_arrow.setVisible(false);
         root.getChildren().add(right_arrow);
 
+//Winner Text
+        winner_text.setVisible(false);
+        winner_text.setTranslateX(515);
+        winner_text.setTranslateY(150);
+        winner_text.setAlignment(Pos.CENTER);
+        winner_text.setFont(Font.font(35));
+        root.getChildren().add(winner_text);
+
+//Total 1 Text
+         total_1_text.setTranslateX(143);
+         total_1_text.setTranslateY(500);
+         total_1_text.setAlignment(Pos.CENTER);
+         total_1_text.setFont(Font.font(20));
+         root.getChildren().add(total_1_text);
+
+//Total 2 Text
+        total_2_text.setTranslateX(800);
+        total_2_text.setTranslateY(500);
+        total_2_text.setAlignment(Pos.CENTER);
+        total_2_text.setFont(Font.font(20));
+        root.getChildren().add(total_2_text);
+
 
 //Grid 1
 for (int i=0; i<3; i++)
@@ -76,6 +105,10 @@ for (int i=0; i<3; i++)
         tile.setTranslateX(150+(j*100));
         tile.setTranslateY(150+(i*100));
 
+
+
+        int finalI = i;
+        int finalJ = j;
         tile.setOnMouseClicked(event -> {
             if(event.getButton() == MouseButton.PRIMARY && tile.check_occupied() == false)
             {
@@ -83,6 +116,10 @@ for (int i=0; i<3; i++)
                 {
                     return;
                 }
+            grid_1[finalI][finalJ] = num;
+                total_1 = calculate.grid_calculation(grid_1);
+                total_1_text.setText("Player 1 Total: " + total_1 );
+
 
                 if (num == 1)
                 {
@@ -114,8 +151,11 @@ for (int i=0; i<3; i++)
                 player1_turn = false;
                 player2_turn = true;
 
-                num = die.rollDie();
-                die.set_diceFace();
+
+                die.rollDie();
+                num = die.return_dice_value();
+                 die.set_diceFace();
+
 
                 if(num_turns < MAX_TURNS) {
                     num_turns= num_turns + 1;
@@ -123,6 +163,7 @@ for (int i=0; i<3; i++)
                     right_arrow.setVisible(true);
                     turn_display.setText("Right Player's Turn");
                 }
+
 
             }
         });
@@ -137,6 +178,10 @@ for (int i=0; i<3; i++)
                 Tile tile2 = new Tile();
                 tile2.setTranslateX(800 +(j * 100));
                 tile2.setTranslateY(150+(i * 100));
+
+
+                int finalI = i;
+                int finalJ = j;
                 tile2.setOnMouseClicked(event -> {
                     if(event.getButton() == MouseButton.PRIMARY && tile2.check_occupied() == false)
                     {
@@ -144,6 +189,10 @@ for (int i=0; i<3; i++)
                         {
                             return;
                         }
+
+                        grid_2[finalI][finalJ] = num;
+                        total_2 = calculate.grid_calculation(grid_2);
+                        total_2_text.setText("Player 2 Total: " + total_2);
 
                         if (num == 1)
                         {
@@ -174,7 +223,9 @@ for (int i=0; i<3; i++)
                         player1_turn = true;
                         player2_turn = false;
 
-                        num = die.rollDie();
+
+                        die.rollDie();
+                        num = die.return_dice_value();
                         die.set_diceFace();
 
                         if(num_turns < MAX_TURNS)
@@ -184,12 +235,34 @@ for (int i=0; i<3; i++)
                             right_arrow.setVisible(false);
                             turn_display.setText("Left Player's Turn");
                         }
+                        //End of Game
                         else if(num_turns == MAX_TURNS)
                         {
+
+                            die.hide_dice();
                             left_arrow.setVisible(false);
                             right_arrow.setVisible(false);
                             turn_display.setText("GAME OVER");
+
+
+                        total_1 = calculate.grid_calculation(grid_1);
+                        total_2 = calculate.grid_calculation(grid_2);
+                        System.out.println("Total 1: " + total_1);
+                        System.out.println("Total 2: " + total_2);
+
+                        if(total_1 > total_2)
+                        {
+                        winner_text.setVisible(true);
                         }
+                        else if(total_2 > total_1)
+                        {
+                            winner_text.setText("Player 2 Wins!");
+                            winner_text.setVisible(true);
+                        }
+
+                        }
+
+
                     }
                 });
 
@@ -205,15 +278,7 @@ return root;
 primaryStage.setScene(new Scene(createContent()));
 primaryStage.show();
 
-        System.out.println(grid_1[0][0]);
-        System.out.println(grid_1[0][1]);
-        System.out.println(grid_1[0][2]);
-        System.out.println(grid_1[1][0]);
-        System.out.println(grid_1[1][1]);
-        System.out.println(grid_1[1][2]);
-        System.out.println(grid_1[2][0]);
-        System.out.println(grid_1[2][1]);
-        System.out.println(grid_1[2][2]);
+
     }
 
 
