@@ -16,13 +16,41 @@ public class Dice_Game extends Application
     private int num;
     private int total_1;
     private int total_2;
+
+    private int P1_row1;
+    private int P1_row2;
+    private int P1_row3;
+    private int P1_col1;
+    private int P1_col2;
+    private int P1_col3;
+
+    private int P2_row1;
+    private int P2_row2;
+    private int P2_row3;
+    private int P2_col1;
+    private int P2_col2;
+    private int P2_col3;
     private final int MAX_TURNS = 18;
     private int num_turns = 1;
     Calculations calculate = new Calculations();
     private Label turn_display = new Label("Left Player's Turn");
     private Label winner_text = new Label("Player 1 Wins!");
     private Label total_1_text = new Label ("Player 1 Total: " + total_1);
+    private Label P1_row1_text = new Label (""+P1_row1);
+    private Label P1_row2_text = new Label (""+P1_row2);
+    private Label P1_row3_text = new Label (""+P1_row3);
+    private Label P1_col1_text = new Label (""+P1_col1);
+    private Label P1_col2_text = new Label (""+P1_col2);
+    private Label P1_col3_text = new Label (""+P1_col3);
+
     private Label total_2_text = new Label ("Player 2 Total: " + total_2);
+
+    private Label P2_row1_text = new Label (""+P2_row1);
+    private Label P2_row2_text = new Label (""+P2_row2);
+    private Label P2_row3_text = new Label (""+P2_row3);
+    private Label P2_col1_text = new Label (""+P2_col1);
+    private Label P2_col2_text = new Label (""+P2_col2);
+    private Label P2_col3_text = new Label (""+P2_col3);
     private boolean player1_turn = true;
     private boolean player2_turn = false;
     private int[][] grid_1 = new int [3][3];
@@ -94,6 +122,91 @@ root.getChildren().add(left_arrow);
         total_2_text.setFont(Font.font(20));
         root.getChildren().add(total_2_text);
 
+//P1_row1_text
+        P1_row1_text.setTranslateX(100);
+        P1_row1_text.setTranslateY(180);
+        P1_row1_text.setAlignment(Pos.CENTER);
+        P1_row1_text.setFont(Font.font(20));
+        root.getChildren().add(P1_row1_text);
+
+        //P1_row2_text
+        P1_row2_text.setTranslateX(100);
+        P1_row2_text.setTranslateY(270);
+        P1_row2_text.setAlignment(Pos.CENTER);
+        P1_row2_text.setFont(Font.font(20));
+        root.getChildren().add(P1_row2_text);
+
+        //P1_row3_text
+        P1_row3_text.setTranslateX(100);
+        P1_row3_text.setTranslateY(360);
+        P1_row3_text.setAlignment(Pos.CENTER);
+        P1_row3_text.setFont(Font.font(20));
+        root.getChildren().add(P1_row3_text);
+
+        //P1_col1_text
+        P1_col1_text.setTranslateX(200);
+        P1_col1_text.setTranslateY(100);
+        P1_col1_text.setAlignment(Pos.CENTER);
+        P1_col1_text.setFont(Font.font(20));
+        root.getChildren().add(P1_col1_text);
+
+        //P1_col2_text
+        P1_col2_text.setTranslateX(300);
+        P1_col2_text.setTranslateY(100);
+        P1_col2_text.setAlignment(Pos.CENTER);
+        P1_col2_text.setFont(Font.font(20));
+        root.getChildren().add(P1_col2_text);
+
+        //P1_col3_text
+        P1_col3_text.setTranslateX(400);
+        P1_col3_text.setTranslateY(100);
+        P1_col3_text.setAlignment(Pos.CENTER);
+        P1_col3_text.setFont(Font.font(20));
+        root.getChildren().add(P1_col3_text);
+
+//HEREDBHWDWAIHDYUW
+        //P2_row1_text
+        P2_row1_text.setTranslateX(1150);
+        P2_row1_text.setTranslateY(180);
+        P2_row1_text.setAlignment(Pos.CENTER);
+        P2_row1_text.setFont(Font.font(20));
+        root.getChildren().add(P2_row1_text);
+
+        //P2_row2_text
+        P2_row2_text.setTranslateX(1150);
+        P2_row2_text.setTranslateY(270);
+        P2_row2_text.setAlignment(Pos.CENTER);
+        P2_row2_text.setFont(Font.font(20));
+        root.getChildren().add(P2_row2_text);
+
+        //P2_row3_text
+        P2_row3_text.setTranslateX(1150);
+        P2_row3_text.setTranslateY(360);
+        P2_row3_text.setAlignment(Pos.CENTER);
+        P2_row3_text.setFont(Font.font(20));
+      root.getChildren().add(P2_row3_text);
+
+        //P2_col1_text
+        P2_col1_text.setTranslateX(850);
+        P2_col1_text.setTranslateY(100);
+        P2_col1_text.setAlignment(Pos.CENTER);
+        P2_col1_text.setFont(Font.font(20));
+        root.getChildren().add(P2_col1_text);
+
+        //P2_col2_text
+        P2_col2_text.setTranslateX(950);
+        P2_col2_text.setTranslateY(100);
+        P2_col2_text.setAlignment(Pos.CENTER);
+        P2_col2_text.setFont(Font.font(20));
+         root.getChildren().add(P2_col2_text);
+
+        //P2_col3_text
+        P2_col3_text.setTranslateX(1050);
+        P2_col3_text.setTranslateY(100);
+        P2_col3_text.setAlignment(Pos.CENTER);
+        P2_col3_text.setFont(Font.font(20));
+        root.getChildren().add(P2_col3_text);
+
 
 //Grid 1
 for (int i=0; i<3; i++)
@@ -118,7 +231,19 @@ for (int i=0; i<3; i++)
                 }
             grid_1[finalI][finalJ] = num;
                 total_1 = calculate.grid_calculation(grid_1);
+                P1_row1 = calculate.row1_calculation(grid_1);
+                P1_row2 = calculate.row2_calculation(grid_1);
+                P1_row3 = calculate.row3_calculation(grid_1);
+                P1_col1 = calculate.col1_calculation(grid_1);
+                P1_col2 = calculate.col2_calculation(grid_1);
+                P1_col3 = calculate.col3_calculation(grid_1);
                 total_1_text.setText("Player 1 Total: " + total_1 );
+                P1_row1_text.setText("" + P1_row1);
+                P1_row2_text.setText("" + P1_row2);
+                P1_row3_text.setText("" + P1_row3);
+                P1_col1_text.setText("" + P1_col1);
+                P1_col2_text.setText("" + P1_col2);
+                P1_col3_text.setText("" + P1_col3);
 
 
                 if (num == 1)
@@ -192,6 +317,18 @@ for (int i=0; i<3; i++)
 
                         grid_2[finalI][finalJ] = num;
                         total_2 = calculate.grid_calculation(grid_2);
+                        P2_row1 = calculate.row1_calculation(grid_2);
+                        P2_row2 = calculate.row2_calculation(grid_2);
+                        P2_row3 = calculate.row3_calculation(grid_2);
+                        P2_col1 = calculate.col1_calculation(grid_2);
+                        P2_col2 = calculate.col2_calculation(grid_2);
+                        P2_col3 = calculate.col3_calculation(grid_2);
+                        P2_row1_text.setText("" + P2_row1);
+                        P2_row2_text.setText("" + P2_row2);
+                        P2_row3_text.setText("" + P2_row3);
+                        P2_col1_text.setText("" + P2_col1);
+                        P2_col2_text.setText("" + P2_col2);
+                        P2_col3_text.setText("" + P2_col3);
                         total_2_text.setText("Player 2 Total: " + total_2);
 
                         if (num == 1)
