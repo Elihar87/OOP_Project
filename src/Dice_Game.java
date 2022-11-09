@@ -23,6 +23,8 @@ public class Dice_Game extends Application
     private int P1_col1;
     private int P1_col2;
     private int P1_col3;
+    private int P1_left_diag;
+    private int P1_right_diag;
 
     private int P2_row1;
     private int P2_row2;
@@ -30,6 +32,8 @@ public class Dice_Game extends Application
     private int P2_col1;
     private int P2_col2;
     private int P2_col3;
+    private int P2_left_diag;
+    private int P2_right_diag;
     private final int MAX_TURNS = 18;
     private int num_turns = 1;
     Calculations calculate = new Calculations();
@@ -43,6 +47,9 @@ public class Dice_Game extends Application
     private Label P1_col2_text = new Label (""+P1_col2);
     private Label P1_col3_text = new Label (""+P1_col3);
 
+    private Label P1_left_diag_text = new Label ("" +P1_left_diag);
+    private Label P1_right_diag_text = new Label (""+P1_right_diag);
+
     private Label total_2_text = new Label ("Player 2 Total: " + total_2);
 
     private Label P2_row1_text = new Label (""+P2_row1);
@@ -51,6 +58,8 @@ public class Dice_Game extends Application
     private Label P2_col1_text = new Label (""+P2_col1);
     private Label P2_col2_text = new Label (""+P2_col2);
     private Label P2_col3_text = new Label (""+P2_col3);
+    private Label P2_left_diag_text = new Label ("" +P2_left_diag);
+    private Label P2_right_diag_text = new Label (""+P2_right_diag);
     private boolean player1_turn = true;
     private boolean player2_turn = false;
     private int[][] grid_1 = new int [3][3];
@@ -164,7 +173,20 @@ root.getChildren().add(left_arrow);
         P1_col3_text.setFont(Font.font(20));
         root.getChildren().add(P1_col3_text);
 
-//HEREDBHWDWAIHDYUW
+        //P1_left_diag_text
+        P1_left_diag_text.setTranslateX(100);
+        P1_left_diag_text.setTranslateY(100);
+        P1_left_diag_text.setAlignment(Pos.CENTER);
+        P1_left_diag_text.setFont(Font.font(20));
+        root.getChildren().add(P1_left_diag_text);
+
+        //P1_right_diag_text
+        P1_right_diag_text.setTranslateX(500);
+        P1_right_diag_text.setTranslateY(100);
+        P1_right_diag_text.setAlignment(Pos.CENTER);
+        P1_right_diag_text.setFont(Font.font(20));
+        root.getChildren().add(P1_right_diag_text);
+
         //P2_row1_text
         P2_row1_text.setTranslateX(1150);
         P2_row1_text.setTranslateY(180);
@@ -207,6 +229,22 @@ root.getChildren().add(left_arrow);
         P2_col3_text.setFont(Font.font(20));
         root.getChildren().add(P2_col3_text);
 
+        //P2_left_diag_text
+        P2_left_diag_text.setTranslateX(750);
+        P2_left_diag_text.setTranslateY(100);
+        P2_left_diag_text.setAlignment(Pos.CENTER);
+        P2_left_diag_text.setFont(Font.font(20));
+        root.getChildren().add(P2_left_diag_text);
+
+        //P2_right_diag_text
+        P2_right_diag_text.setTranslateX(1150);
+        P2_right_diag_text.setTranslateY(100);
+        P2_right_diag_text.setAlignment(Pos.CENTER);
+        P2_right_diag_text.setFont(Font.font(20));
+        root.getChildren().add(P2_right_diag_text);
+
+
+
 
 //Grid 1
 for (int i=0; i<3; i++)
@@ -237,6 +275,8 @@ for (int i=0; i<3; i++)
                 P1_col1 = calculate.col1_calculation(grid_1);
                 P1_col2 = calculate.col2_calculation(grid_1);
                 P1_col3 = calculate.col3_calculation(grid_1);
+                P1_left_diag = calculate.left_diag_calculation(grid_1);
+                P1_right_diag = calculate.right_diag_calculation(grid_1);
                 total_1_text.setText("Player 1 Total: " + total_1 );
                 P1_row1_text.setText("" + P1_row1);
                 P1_row2_text.setText("" + P1_row2);
@@ -244,6 +284,8 @@ for (int i=0; i<3; i++)
                 P1_col1_text.setText("" + P1_col1);
                 P1_col2_text.setText("" + P1_col2);
                 P1_col3_text.setText("" + P1_col3);
+                P1_left_diag_text.setText("" + P1_left_diag);
+                P1_right_diag_text.setText(""+P1_right_diag);
 
 
                 if (num == 1)
@@ -323,12 +365,16 @@ for (int i=0; i<3; i++)
                         P2_col1 = calculate.col1_calculation(grid_2);
                         P2_col2 = calculate.col2_calculation(grid_2);
                         P2_col3 = calculate.col3_calculation(grid_2);
+                        P2_left_diag = calculate.left_diag_calculation(grid_2);
+                        P2_right_diag = calculate.right_diag_calculation(grid_2);
                         P2_row1_text.setText("" + P2_row1);
                         P2_row2_text.setText("" + P2_row2);
                         P2_row3_text.setText("" + P2_row3);
                         P2_col1_text.setText("" + P2_col1);
                         P2_col2_text.setText("" + P2_col2);
                         P2_col3_text.setText("" + P2_col3);
+                        P2_left_diag_text.setText("" + P2_left_diag);
+                        P2_right_diag_text.setText(""+ P2_right_diag);
                         total_2_text.setText("Player 2 Total: " + total_2);
 
                         if (num == 1)
@@ -414,8 +460,6 @@ return root;
     {
 primaryStage.setScene(new Scene(createContent()));
 primaryStage.show();
-
-
     }
 
 
